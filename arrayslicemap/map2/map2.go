@@ -9,6 +9,8 @@ func main() {
 		"Mario":  6800.90,
 	}
 
+	delete(salarios, "NÃO EXISTE")
+
 	fmt.Println(salarios)
 
 	salarios["Juliano"] = 3500.58
