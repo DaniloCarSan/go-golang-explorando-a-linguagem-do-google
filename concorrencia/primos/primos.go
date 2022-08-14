@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func isPrimo(num int) bool {
+	for i := 2; i < num; i++ {
+		if num%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func primos(n int, c chan int) {
+	incio := 2
+	for i := 0; i < n; i++ {
+		for primo := incio; ; primo++ {
+			if isPrimo(primo) {
+				c <- primo
+				incio = primo + 1
+				time.Sleep(time.Microsecond * 100)
+				break
+			}
+		}
+	}
+	close(c)
+}
+
+func main() {
+
+	c := make(chan int, 30)
+
+	go primos(cap(c), c)
+
+	for primo := range c {
+		fmt.Printf("%d ", primo)
+	}
+
+	fmt.Println("Fim !")
+}
