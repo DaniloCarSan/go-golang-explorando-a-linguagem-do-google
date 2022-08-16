@@ -1,0 +1,13 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+    mariadb:
+        image: 'mariadb:10'
+        ports:
+            - '3307:3306'
+        environment:
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: 'golang'
+            MYSQL_USER: 'root'
+            MYSQL_PASSWORD: '123456'
+            MYSQL_ROOT_PASSWORD: '123456'
